@@ -2,10 +2,10 @@ import { CommentForm } from "@/components/CommentForm";
 import { CommentList } from "@/components/CommentList";
 import { Vote } from "@/components/Vote";
 import { db } from "@/db";
+import { auth } from "@/auth";
 
 export async function generateMetadata({ params }) {
   const query = (await db.query(`SELECT title, body FROM posts WHERE id = $1`, [params.postId])).rows[0];
-  console.log(query);
   return {
     title: query.title,
     description: query.description,
@@ -14,6 +14,14 @@ export async function generateMetadata({ params }) {
 
 export default async function SinglePostPage({ params }) {
   const postId = params.postId;
+  const session = await auth();
+  let loggedIn;
+  if (session) {
+    // checks if user is logged in or not
+    loggedIn = true;
+  } else {
+    loggedIn = false;
+  }
 
   const { rows: posts } = await db.query(
     `SELECT posts.id, posts.title, posts.body, posts.created_at, users.name, 
@@ -44,7 +52,7 @@ export default async function SinglePostPage({ params }) {
       </div>
       <main className="whitespace-pre-wrap m-4">{post.body}</main>
 
-      <CommentForm postId={post.id} />
+      <CommentForm postId={post.id} isLoggedIn={loggedIn} />
       <CommentList postId={post.id} />
     </div>
   );

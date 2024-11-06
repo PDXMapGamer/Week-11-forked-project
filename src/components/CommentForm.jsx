@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { CommentFormButton } from "./CommentFormButton";
 
-export function CommentForm({ postId, parentCommentId }) {
+export function CommentForm({ postId, parentCommentId, isLoggedIn }) {
   const [state, dispatch] = useFormState(saveComment, {
     postId,
     parentCommentId,
@@ -23,16 +23,12 @@ export function CommentForm({ postId, parentCommentId }) {
   return (
     <div className="ml-4">
       <button onClick={() => setOpen(!isOpen)} className="text-zinc-400">
-        {isOpen ? "Close" : "Reply"}
+        {isOpen && isLoggedIn ? "Close" : isLoggedIn ? "Reply" : <p>Log in to reply</p>}
       </button>
-      {isOpen ? (
+      {isOpen && isLoggedIn ? (
         <>
           <form action={boundDispatch} className="flex flex-col space-y-3">
-            <textarea
-              name="comment"
-              className="bg-zinc-200 p-3 rounded"
-              placeholder="Type your comment..."
-            />
+            <textarea name="comment" className="bg-zinc-200 p-3 rounded" placeholder="Type your comment..." />
             <CommentFormButton />
           </form>
         </>

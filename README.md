@@ -1,10 +1,13 @@
 Fixes & Feature Requests (Stretch goals)
 
-    Fix page titles on post pages to match the post title
+    Fix page titles on post pages to match the post title #DONE
     Handle the error when you click to vote while not logged in to show a nice error message #DONE
     Try to make it so I can't vote more than once (Fix could be done in the SQL with the constraints  (ideally), or in-app code to check the db before adding a new row to the votes table)#NOT SURE WHAT THIS WANTS FROM ME
     Users can vote an infinite number of times on the same post. We'd like to prevent this happening. It should be enforced at the Schema level with the UNIQUE constraint but it isn't working. We'd like you to try and fix this, either by correcting the schema (preferable) or if not by implementing the restriction in the application code when the user tries to upvote.#DONE
     There are more potential stretch goals to choose from in the ReadMe - look at the future features if you are all done and twiddling your thumbs or you want to chellenge yourself further.
+    Other stuff not on moodle:
+      Fixed bug where site would crash if a user attempted to comment while logged in. (due to next feature this theoretically should not be possible to do anyways).
+      Change it so users not logged in can not see "reply" on posts (instead they are told to log in to reply) and they may not click it to open the form to submit a comment.
 
 ## Upvote
 
