@@ -1,6 +1,6 @@
 Fixes & Feature Requests (Stretch goals)
 
-    Fix page titles on post pages to match the post title #DONE
+    Fix page titles on post pages to match the post title #DONE (minor bug)
     Handle the error when you click to vote while not logged in to show a nice error message #DONE
     Try to make it so I can't vote more than once (Fix could be done in the SQL with the constraints  (ideally), or in-app code to check the db before adding a new row to the votes table)#NOT SURE WHAT THIS WANTS FROM ME
     Users can vote an infinite number of times on the same post. We'd like to prevent this happening. It should be enforced at the Schema level with the UNIQUE constraint but it isn't working. We'd like you to try and fix this, either by correcting the schema (preferable) or if not by implementing the restriction in the application code when the user tries to upvote.#DONE
@@ -8,6 +8,14 @@ Fixes & Feature Requests (Stretch goals)
     Other stuff not on moodle:
       Fixed bug where site would crash if a user attempted to comment while logged in. (due to next feature this theoretically should not be possible to do anyways).
       Change it so users not logged in can not see "reply" on posts (instead they are told to log in to reply) and they may not click it to open the form to submit a comment.
+
+🎯 Please mention the requirements you met and which goals you achieved for this assignment.
+I have met the core requirements by getting it deployed to vercel sucessfully and several stretch goals which are outlined above.
+
+🎯 Were there any requirements or goals that you were not quite able to achieve?
+I have completed all stretch goals I have attempted and there are many more I could have tried to implement, if I had more time. However after testing the deployment on vercel I have noticed that there is a minor bug where if you try to upvote a post while not logged in and then log in to upvote the post the message saying you can't upvote a post without being logged in will still appear despite you being logged in and allowed to upvote posts. This appears to be pure a visual bug as it does not effect the functionality of the upvote system and aside from the bug it is working as intended.
+🎯 If so, could you please tell us what was it that you found difficult about these tasks?
+While trying to use the toast() function to send a message when the user tries to upvote a post while not logged in I came across a variety of bugs such as toast() is not a function which took way too long to solve when the solution was simple. unlike basically everything else we import where we use {} to destructure it toast can not be destructured, and when looking into this problem no site anywhere mentioned this and it took several reviews over the docs to catch this out, in the docs page they import toast as well as something destructured so my brain just skipped over how the fundimental toast function is supposed to be imported. Also it does not work in server components and can't be used in the comment.js action file so I can't (as far as I know) use it after the user tries posting a comment while not logged in (I sucessfully got the post submit reply button to not break when replying while not logged in but I wanted the user to be notified why nothing is happening) so I had to implement an alternative way to stop that by not letting the user even open up the form to reply in the first place.
 
 ## Upvote
 
