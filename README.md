@@ -1,3 +1,11 @@
+Fixes & Feature Requests (Stretch goals)
+
+    Fix page titles on post pages to match the post title
+    Handle the error when you click to vote while not logged in to show a nice error message #DONE
+    Try to make it so I can't vote more than once (Fix could be done in the SQL with the constraints  (ideally), or in-app code to check the db before adding a new row to the votes table)#NOT SURE WHAT THIS WANTS FROM ME
+    Users can vote an infinite number of times on the same post. We'd like to prevent this happening. It should be enforced at the Schema level with the UNIQUE constraint but it isn't working. We'd like you to try and fix this, either by correcting the schema (preferable) or if not by implementing the restriction in the application code when the user tries to upvote.#DONE
+    There are more potential stretch goals to choose from in the ReadMe - look at the future features if you are all done and twiddling your thumbs or you want to chellenge yourself further.
+
 ## Upvote
 
 Upvote is a Reddit-esque web application that allows users to create posts, upvote and downvote posts, and comment on posts in a multi-threaded, nested list.

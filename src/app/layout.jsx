@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import { UserInfo } from "../components/UserInfo";
-
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Link from "next/link";
 import { Providers } from "@/Providers";
@@ -21,17 +21,17 @@ export default async function RootLayout({ children }) {
             <Link href="/" className="text-xl">
               Didit
             </Link>
-            <Link
-              href="/add-post"
-              className="ml-10 hover:bg-zinc-300 p-2 rounded bg-pink-300 text-black"
-            >
+            <Link href="/add-post" className="ml-10 hover:bg-zinc-300 p-2 rounded bg-pink-300 text-black">
               Add post
             </Link>
             <div className="ml-auto">
               <UserInfo />
             </div>
           </header>
-          <main className="max-w-screen-xl lg:mx-auto">{children}</main>
+          <main className="max-w-screen-xl lg:mx-auto">
+            <Toaster position="top-center" />
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
